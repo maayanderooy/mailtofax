@@ -19,5 +19,5 @@ DEFAULT_SENDER = 'postmaster@localhost'
 # %(sender)s : sender email address
 # %(destination)s : recipient's fax number
 # %(file)s : temporary file to be faxed (email attachment)
-SENDFAX = 'sendfax -mnD -$ %(sender)s -d %(destination)s %(file)s'
+SENDFAX = 'sendfax -mnD -f %(sender)s -d %(destination)s %(file)s'
 
