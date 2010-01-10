@@ -72,6 +72,7 @@ class MailToFax:
                 suffix = '.bin'
             tmp = tempfile.NamedTemporaryFile(dir=settings.TMP, suffix=suffix)
             tmp.write(part.get_payload(decode=True))
+            tmp.flush() # make sure it's not buffered
             self.sendfax(tmp, destination)
             tmp.close()
 
