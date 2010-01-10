@@ -16,8 +16,8 @@ dedicated mailtofax user on your mail server into the mailtofax tool.
 
 Authors
 -------
-Frederic Wenzel (fwenzel@mozilla.com)
-Jean Pierre Wenzel (jpwenzel@gmx.net)
+* Frederic Wenzel (fwenzel@mozilla.com)
+* Jean Pierre Wenzel (jpwenzel@gmx.net)
 
 License
 -------
