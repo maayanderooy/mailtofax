@@ -27,7 +27,7 @@ class MailToFax:
         parser.add_option('-c', '--stdin', dest='stdin', action="store_true",
                           help='read data from stdin, not the file argument')
         parser.add_option('-n', '--dry-run', dest='noexec', action="store_true",
-                          help='Test mode: Do not execute comment, just display ' \
+                          help='Test mode: Do not execute command, just display ' \
                                'what would be run')
         (self.options, self.args) = parser.parse_args()
 
