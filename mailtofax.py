@@ -77,10 +77,12 @@ class MailToFax:
 
     def sendfax(self, file, destination):
         """send a fax to the given destination."""
-        fax_command = (settings.SENDFAX % {'sender': self.sender,
-                                           'destination': destination,
-                                           'file': file.name,
-                                          }).split()
+        fax_command = settings.SENDFAX.split()
+        substitutions = {'sender': self.sender,
+                         'destination': destination,
+                         'file': file.name,
+                        }
+        fax_command = [ l % substitutions for l in fax_command ]
         if self.options.noexec:
             fax_command.insert(0, 'echo')
         call(fax_command)
