@@ -4,6 +4,7 @@ import email
 import mimetypes
 from optparse import OptionParser
 import re
+from subprocess import call
 import sys
 import tempfile
 
@@ -40,8 +41,13 @@ def main():
 
 def process_email(msg):
     """process email message: fetch attachments to be sent by fax"""
+    # grab email sender
+    SENDER = msg.get('reply-to', msg.get('from', settings.DEFAULT_SENDER))
+    #print "Sender: %s" % SENDER
+
     if not msg.is_multipart():
         raise InputError('Input needs to be a multipart message!')
+
     for part in msg.walk():
         content_type = part.get_content_type()
         if content_type not in settings.FAX_MIME_TYPES: continue
@@ -60,8 +66,16 @@ def process_email(msg):
             suffix = '.bin'
         tmp = tempfile.NamedTemporaryFile(dir=settings.TMP, suffix=suffix)
         tmp.write(part.get_payload(decode=True))
-
+        sendfax(tmp, destination)
         tmp.close()
+
+def sendfax(file, destination):
+    """send a fax to the given destination."""
+    fax_command = (settings.SENDFAX % {'sender': SENDER,
+                                       'destination': destination,
+                                       'file': file.name,
+                                      }).split()
+    call(fax_command)
 
 if __name__ == '__main__':
     main()
