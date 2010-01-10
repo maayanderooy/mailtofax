@@ -11,9 +11,7 @@ FAX_MIME_TYPES = ['application/pdf']
 DEFAULT_SENDER = 'postmaster@localhost'
 
 # sendfax command. Add all options here.
-#
-# refer to the sendfax man page for more info:
-# http://linux.die.net/man/1/sendfax
+# refer to the sendfax man page for more info.
 #
 # replacements:
 # %(sender)s : sender email address (can contain spaces!)
