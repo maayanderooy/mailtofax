@@ -16,8 +16,8 @@ DEFAULT_SENDER = 'postmaster@localhost'
 # http://linux.die.net/man/1/sendfax
 #
 # replacements:
-# %(sender)s : sender email address
+# %(sender)s : sender email address (can contain spaces!)
 # %(destination)s : recipient's fax number
 # %(file)s : temporary file to be faxed (email attachment)
-SENDFAX = 'sendfax -mnD -f %(sender)s -d %(destination)s %(file)s'
+SENDFAX = 'sendfax -mnD -f "%(sender)s" -d %(destination)s %(file)s'
 
