@@ -7,6 +7,6 @@ TMP = '/tmp'
 # list of mime types to be interpreted as faxes
 FAX_MIME_TYPES = ['application/pdf']
 
-# sendfax command
+# sendfax command. Add all options here.
 SENDFAX = 'sendfax '
 

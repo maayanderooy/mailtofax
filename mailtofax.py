@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 
 import email
+import mimetypes
 from optparse import OptionParser
+import re
 import sys
+import tempfile
 
 import settings
 
@@ -40,8 +43,25 @@ def process_email(msg):
     if not msg.is_multipart():
         raise InputError('Input needs to be a multipart message!')
     for part in msg.walk():
-        if part.get_content_type() not in settings.FAX_MIME_TYPES: continue
-        print part.get_content_type()
+        content_type = part.get_content_type()
+        if content_type not in settings.FAX_MIME_TYPES: continue
+
+        # prepare destination
+        dest_match = re.search(r'(\d+)', part.get_filename())
+        if not dest_match:
+            raise InputError("Attachment file name must contain the " \
+                             "recipient's fax number!")
+        destination = dest_match.group(1)
+        #print "Destination: %s" % destination
+
+        # prepare file
+        suffix = mimetypes.guess_extension(content_type)
+        if not suffix:
+            suffix = '.bin'
+        tmp = tempfile.NamedTemporaryFile(dir=settings.TMP, suffix=suffix)
+        tmp.write(part.get_payload(decode=True))
+
+        tmp.close()
 
 if __name__ == '__main__':
     main()
