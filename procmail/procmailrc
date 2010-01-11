@@ -1,15 +1,18 @@
 ###
 # procmailrc for fax user
-#
-# 2010/01/10, jpwenzel@gmx.net
 ###
 
-### Check if e-mail contains a PDF attachment; its name must contain the 
+# debugging options
+#LOGFILE="$HOME/procmail.log"
+#VERBOSE="yes"
+
+### Check if e-mail contains a PDF attachment; its name must contain the
 ### fax number
-:0B:
-* ^Content-Type: application/pdf; name=".*\d+.*\.[Pp][Dd][Ff]"
-| ~/bin/mailtofax/mailtofax.py -c
+:0B
+* ^Content-Type: application/pdf; name=.*[\d]+
+| $HOME/bin/mailtofax/mailtofax.py -c
 
 ### Forward all other mails to the postmaster
 :0
 !postmaster
+
