@@ -89,6 +89,5 @@ class MailToFax:
         call(fax_command)
 
 if __name__ == '__main__':
-    mtf = MailToFax()
-    mtf.main()
+    MailToFax().main()
 
