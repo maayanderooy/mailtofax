@@ -11,7 +11,7 @@ import tempfile
 import settings
 
 
-class MailToFax:
+class MailToFax(object):
     sender = '' # email sender to receive success or error messages
     options = None # options from argument parser
     args = None # arguments from argument parser
