@@ -4,8 +4,12 @@ mailtofax
 mailtofax is a simple script that parses email messages, extracts PDF
 attachments, and sends them on to the Hylafax [sendfax][sendfax-man] command.
 
-It expects the recipient fax number to be part of the PDF file name, e.g.,
-`0123456789.pdf`.
+The recipient fax number can be in one of two places:
+
+* in the subject (only the number, with no other surrounding cruft)
+* as part of the PDF file name, e.g., `0123456789.pdf`.
+
+If there is a number in both places, the filename takes precedence.
 
 In the `procmail` directory, there are two example files that show how you can
 use the [procmail][procmail] mail processing tool to funnel emails to a

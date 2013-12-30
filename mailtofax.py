@@ -46,34 +46,48 @@ class MailToFax(object):
         self.process_email(msg)
 
     def process_email(self, msg):
-        """process email message: fetch attachments to be sent by fax"""
-        # grab email sender
+        """Process email message: fetch attachments to be sent by fax."""
+        if not msg.is_multipart():
+            raise InputError('Input needs to be a multipart message!')
+
+        # Grab email sender.
         self.sender = msg.get('reply-to', msg.get('from', settings.DEFAULT_SENDER))
         #print "Sender: %s" % self.sender
 
-        if not msg.is_multipart():
-            raise InputError('Input needs to be a multipart message!')
+        # A fallback destination can be specified as subject. Each file name
+        # can override this.
+        subject = msg.get('subject')
+        if re.match(r'\d+', subject):
+            fallback_dest = subject
+        else:
+            fallback_dest = None
 
         for part in msg.walk():
             content_type = part.get_content_type()
             if content_type not in settings.FAX_MIME_TYPES: continue
 
-            # prepare destination
+            # Prepare destination.
             dest_match = re.search(r'(\d+)', part.get_filename())
-            if not dest_match:
-                raise InputError("Attachment file name must contain the " \
+            if dest_match:
+                destination = dest_match.group(1)
+            elif fallback_dest:
+                destination = fallback_dest
+            else:
+                raise InputError("Attachment file name must contain the "
                                  "recipient's fax number!")
-            destination = dest_match.group(1)
             #print "Destination: %s" % destination
 
-            # prepare file
+            # Prepare file
             suffix = mimetypes.guess_extension(content_type)
             if not suffix:
                 suffix = '.bin'
+
             tmp = tempfile.NamedTemporaryFile(dir=settings.TMP, suffix=suffix)
             tmp.write(part.get_payload(decode=True))
             tmp.flush() # make sure it's not buffered
+
             self.sendfax(tmp, destination)
+
             tmp.close()
 
     def sendfax(self, file, destination):
@@ -90,4 +104,4 @@ class MailToFax(object):
 
 if __name__ == '__main__':
     MailToFax().main()
-
+    # TODO: Report errors back to sender.
