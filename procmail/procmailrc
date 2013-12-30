@@ -19,7 +19,7 @@
 ## OR:
 
 # Check if e-mail contains a PDF attachment and handle.
-# If script fails,
+# If script fails, we'll bounce.
 :0 B
 * ^Content-Type: application/pdf;
 {
