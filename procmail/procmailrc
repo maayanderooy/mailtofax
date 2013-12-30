@@ -2,17 +2,41 @@
 # procmailrc for fax user
 ###
 
-# debugging options
+# Debugging options
 #LOGFILE="$HOME/procmail.log"
 #VERBOSE="yes"
 
-### Check if e-mail contains a PDF attachment; its name must contain the
-### fax number
-:0B
+### Match incoming email
+
+# Check if e-mail contains a PDF attachment; its name must contain the
+# fax number
+# XXX does not handle line breaks, cf. https://github.com/fwenzel/mailtofax/issues/3
+:0 B
 * ^Content-Type: application/pdf; name=.*[\d]+
 | $HOME/bin/mailtofax/mailtofax.py -c
+
+
+## OR:
+
+# Check if e-mail contains a PDF attachment and handle.
+# If script fails,
+:0 B
+* ^Content-Type: application/pdf;
+{
+    :0 w
+    | $HOME/bin/mailtofax/mailtofax.py -c
+
+    # If we reach this, the script did not exit cleanly.
+    # Throw "data format error".
+    EXITCODE=65
+
+    # Mail bounces anyway, don't hold on to it.
+    :0
+    /dev/null
+}
+
+
 
 ### Forward all other mails to the postmaster
 :0
 !postmaster
-
