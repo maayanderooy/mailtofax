@@ -11,14 +11,15 @@ import tempfile
 import settings
 
 
+class InputError(Exception):
+    """A general error for all the things we can't handle"""
+    pass
+
+
 class MailToFax(object):
     sender = '' # email sender to receive success or error messages
     options = None # options from argument parser
     args = None # arguments from argument parser
-
-    class InputError(Exception):
-        """A general error for all the things we can't handle"""
-        pass
 
     def main(self):
         parser = OptionParser()
@@ -73,8 +74,9 @@ class MailToFax(object):
             elif fallback_dest:
                 destination = fallback_dest
             else:
-                raise InputError("Attachment file name must contain the "
-                                 "recipient's fax number!")
+                raise InputError(
+                    "Attachment file name or subject line must contain the "
+                    "recipient's fax number!")
             #print "Destination: %s" % destination
 
             # Prepare file
