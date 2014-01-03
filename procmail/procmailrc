@@ -36,7 +36,12 @@
 }
 
 
+## OR you can send all mails to the script, it'll bounce if it's not a valid email.
+:0
+| $HOME/bin/mailtofax/mailtofax.py -c
 
-### Forward all other mails to the postmaster
+
+
+### Final catchall: Forward all other mails to the postmaster.
 :0
 !postmaster
