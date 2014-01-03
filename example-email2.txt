@@ -3,7 +3,7 @@ Date: Sun, 10 Jan 2010 18:06:19 +0100
 From: John Doe <john@example.com>
 MIME-Version: 1.0
 To: jane@example.com
-Subject: 007221703700
+Subject: 0123456789
 Content-Type: multipart/mixed;
  boundary="------------060805060808000209000500"
 
