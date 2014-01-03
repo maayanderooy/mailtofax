@@ -3,6 +3,7 @@
 import email
 import json
 import mimetypes
+import os.path
 import re
 import smtplib
 import sys
@@ -16,6 +17,10 @@ from subprocess import call
 import settings
 
 
+# `pwd` helper
+HERE = lambda *a: os.path.join(os.path.dirname(__FILE__), *a)
+
+
 class InputError(Exception):
     """A general error for all the things we can't handle"""
     pass
@@ -27,7 +32,7 @@ def _(key):
     global _L10N_CACHE
 
     if _L10N_CACHE is None:
-        _L10N_CACHE = json.loads(open('l10n.json').read())
+        _L10N_CACHE = json.loads(open(HERE('l10n.json')).read())
 
     return _L10N_CACHE[settings.LANG].get(key)
 
