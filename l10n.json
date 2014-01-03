@@ -12,5 +12,5 @@
         "email_html": "<html>\n<head></head>\n<body><p><strong>Ein Fehler ist aufgetreten:</strong><br>\n%s\n</p>\n</body>\n</html>",
         "e_nonumber": "Der Dateiname der angehängten PDF-Datei oder der Betreff muss die Empfänger-Faxnummer enthalten!",
         "e_noattachment": "Kein fax-barer Anhang gefunden. Haben Sie eine PDF-Datei angehängt?"
-    },
+    }
 }

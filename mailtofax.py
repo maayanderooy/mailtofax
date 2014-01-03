@@ -45,8 +45,8 @@ class Bouncer(object):
         text = _('email_text') % err
         html = _('email_html') % err
 
-        self._msg.attach(MIMEText(text, 'plain'))
-        self._msg.attach(MIMEText(html, 'html'))
+        self._msg.attach(MIMEText(text, 'plain', 'utf-8'))
+        self._msg.attach(MIMEText(html, 'html', 'utf-8'))
 
         # Stick it all in an envelope.
         envelope = MIMEMultipart('mixed')
