@@ -63,7 +63,6 @@ class Bouncer(object):
             recipient = self._incoming.get('reply-to',
                                            self._incoming.get('from'))
 
-        recipient = 'fwenzel@mozilla.com'
         envelope['From'] = settings.MAILTOFAX_EMAIL
         envelope['To'] = recipient
         envelope['Subject'] = _('subject') % (self._incoming['subject'] if
