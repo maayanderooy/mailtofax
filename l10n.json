@@ -1,0 +1,16 @@
+{
+    "en": {
+        "subject": "Re: ERROR [%s]",
+        "email_text": "Error: %s",
+        "email_html": "<html>\n<head></head>\n<body><p><strong>An error occurred:</strong><br>\n%s\n</p>\n</body>\n</html>",
+        "e_nonumber": "Attachment file name or subject line must contain the recipient's fax number!",
+        "e_noattachment": "No faxable attachment found. Did you attach a PDF file?"
+    },
+    "de": {
+        "subject": "Re: FEHLER [%s]",
+        "email_text": "Fehler: %s",
+        "email_html": "<html>\n<head></head>\n<body><p><strong>Ein Fehler ist aufgetreten:</strong><br>\n%s\n</p>\n</body>\n</html>",
+        "e_nonumber": "Der Dateiname der angehängten PDF-Datei oder der Betreff muss die Empfänger-Faxnummer enthalten!",
+        "e_noattachment": "Kein fax-barer Anhang gefunden. Haben Sie eine PDF-Datei angehängt?"
+    },
+}
