@@ -9,7 +9,7 @@ The recipient fax number can be in one of two places:
 * in the subject (only the number, with no other surrounding cruft)
 * as part of the PDF file name, e.g., `0123456789.pdf`.
 
-If there is a number in both places, the filename takes precedence.
+If there is a number in both places, the *subject* takes precedence.
 
 In the `procmail` directory, there are two example files that show how you can
 use the [procmail][procmail] mail processing tool to funnel emails to a

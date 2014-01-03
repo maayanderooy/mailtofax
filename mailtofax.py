@@ -128,23 +128,22 @@ class MailToFax(object):
         # can override this.
         subject = msg.get('subject')
         if re.match(r'\d+', subject):
-            fallback_dest = subject
+            destination = subject
         else:
-            fallback_dest = None
+            destination = None
 
         sent = 0  # Number of faxes actually sent.
         for part in msg.walk():
             content_type = part.get_content_type()
             if content_type not in settings.FAX_MIME_TYPES: continue
 
-            # Prepare destination.
-            dest_match = re.search(r'(\d+)', part.get_filename())
-            if dest_match:
-                destination = dest_match.group(1)
-            elif fallback_dest:
-                destination = fallback_dest
-            else:
-                Bouncer(msg).bounce(_('e_nonumber'))
+            # Fall back to filename if no number in subject.
+            if not destination:
+                dest_match = re.search(r'^(\d+)\.', part.get_filename())
+                if dest_match:
+                    destination = dest_match.group(1)
+                else:
+                    Bouncer(msg).bounce(_('e_nonumber'))
             #print "Destination: %s" % destination
 
             # Prepare file
