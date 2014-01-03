@@ -18,7 +18,7 @@ import settings
 
 
 # `pwd` helper
-HERE = lambda *a: os.path.join(os.path.dirname(__FILE__), *a)
+HERE = lambda *a: os.path.join(os.path.dirname(__file__), *a)
 
 
 class InputError(Exception):
