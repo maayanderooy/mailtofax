@@ -2,11 +2,11 @@
 
 import email
 import mimetypes
-from optparse import OptionParser
 import re
-from subprocess import call
 import sys
 import tempfile
+from optparse import OptionParser
+from subprocess import call
 
 import settings
 
@@ -107,3 +107,4 @@ class MailToFax(object):
 if __name__ == '__main__':
     MailToFax().main()
     # TODO: Report errors back to sender.
+
