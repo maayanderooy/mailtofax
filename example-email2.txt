@@ -19,7 +19,7 @@ Content-Type: application/pdf;
  name="123456789.pdf"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment;
- filename="blah.pdf"
+ filename="123456789.pdf"
 
 JVBERi0xLjQKJcOkw7zDtsOfCjIgMCBvYmoKPDwvTGVuZ3RoIDMgMCBSL0ZpbHRlci9GbGF0
 ZURlY29kZT4+CnN0cmVhbQp4nDPQM1Qo5ypUMFAwALJMLU31jBUsTAz1LBWKUhXCtRTyIHJA
