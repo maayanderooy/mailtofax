@@ -19,3 +19,8 @@ DEFAULT_SENDER = 'postmaster@localhost'
 # %(file)s : temporary file to be faxed (email attachment)
 SENDFAX = 'sendfax -mnD -f "%(sender)s" -d %(destination)s %(file)s'
 
+# Load local settings, if they exist.
+try:
+    from settings_local import *
+except ImportError:
+    pass
