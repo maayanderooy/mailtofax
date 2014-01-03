@@ -73,7 +73,7 @@ class Bouncer(object):
         #print self._msg.as_string()
         smtp = smtplib.SMTP(settings.SMTP_SERVER['host'],
                             settings.SMTP_SERVER.get('port') or 25)
-        if settings.SMTP_SERVER['tls']:
+        if settings.SMTP_SERVER.get('tls'):
             smtp.starttls()
         if settings.SMTP_SERVER.get('user'):
             smtp.login(settings.SMTP_SERVER['user'],
